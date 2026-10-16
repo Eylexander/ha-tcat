@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datetime import timedelta
+
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntity
 from homeassistant.const import UnitOfTime
 from homeassistant.core import HomeAssistant
@@ -39,8 +41,8 @@ class NextBus(CoordinatorEntity[TcatCoordinator], SensorEntity):
         if not self.coordinator.data:
             return None
         when = self.coordinator.data[0].time
-        if self.kind == "next":
-            return when
+        if self.kind == "next":  # to the minute: real-time estimates move by seconds every poll, flooding the logbook
+            return (when + timedelta(seconds=30)).replace(second=0, microsecond=0)
         return max(0, int((when - dt_util.utcnow()).total_seconds() // 60))
 
     @property
