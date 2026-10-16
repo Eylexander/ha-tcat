@@ -49,7 +49,8 @@ class TcatConfigFlow(ConfigFlow, domain=DOMAIN):
             await self.async_set_unique_id(f"{self.route}|{stop}")
             self._abort_if_unique_id_configured()
             line = self.gtfs.routes[self.route]["route_short_name"]
-            return self.async_create_entry(title=f"{line} · {stops[stop]}", data={CONF_ROUTE: self.route, CONF_STOP: stop},
+            title = f"{line} · {stops[stop].split(' / ')[0]}"  # main terminus only: it names the entity ids
+            return self.async_create_entry(title=title, data={CONF_ROUTE: self.route, CONF_STOP: stop},
                                            options={CONF_WALK: user_input[CONF_WALK]})
         return self.async_show_form(step_id="stop", data_schema=vol.Schema({
             vol.Required(CONF_STOP): _select(stops),
