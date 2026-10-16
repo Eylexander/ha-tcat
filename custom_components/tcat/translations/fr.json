@@ -1,0 +1,35 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ligne TCAT",
+        "description": "Choisissez la ligne de votre arrêt favori. Ajoutez l'intégration plusieurs fois pour suivre plusieurs arrêts.",
+        "data": {"route": "Ligne"}
+      },
+      "stop": {
+        "title": "Arrêt et direction",
+        "description": "Ligne {line}.",
+        "data": {"stop": "Arrêt → direction", "walk": "Temps de marche jusqu'à l'arrêt"},
+        "data_description": {"walk": "Les bus qui partent avant que vous puissiez y être sont ignorés."}
+      }
+    },
+    "abort": {
+      "already_configured": "Cet arrêt est déjà suivi.",
+      "cannot_connect": "Impossible de télécharger les horaires TCAT (transport.data.gouv.fr)."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {"walk": "Temps de marche jusqu'à l'arrêt"},
+        "data_description": {"walk": "Les bus qui partent avant que vous puissiez y être sont ignorés."}
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next": {"name": "Prochain bus"},
+      "minutes": {"name": "Prochain bus dans"}
+    }
+  }
+}

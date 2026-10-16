@@ -1,0 +1,35 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "TCAT line",
+        "description": "Pick the line of your favourite stop. Add the integration again to follow more stops.",
+        "data": {"route": "Line"}
+      },
+      "stop": {
+        "title": "Stop and direction",
+        "description": "Line {line}.",
+        "data": {"stop": "Stop → direction", "walk": "Walking time to the stop"},
+        "data_description": {"walk": "Buses leaving before you can get there are skipped."}
+      }
+    },
+    "abort": {
+      "already_configured": "This stop is already followed.",
+      "cannot_connect": "Could not download the TCAT timetable (transport.data.gouv.fr)."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {"walk": "Walking time to the stop"},
+        "data_description": {"walk": "Buses leaving before you can get there are skipped."}
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next": {"name": "Next bus"},
+      "minutes": {"name": "Next bus in"}
+    }
+  }
+}
